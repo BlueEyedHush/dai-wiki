@@ -73,6 +73,11 @@ object Analyzer {
         case (title, str, xp) => println(s"$title: $xp ($str)")
       }
 
-    // @todo search for stats boosts!
+    val statNames = Set("strength", "dexterity", "magic", "cunning", "willpower", "constitution", "attr", "resistance")
+    val rewardsStatBoost = rewardsSections
+      .filter { case (title, txt) => statNames.exists(txt.toLowerCase.contains)}
+    println()
+    println(s"Possible stat boosts (${rewardsStatBoost.size}): ")
+    rewardsStatBoost.foreach { case (title, txt) => println(s"### $title ###\n$txt")}
   }
 }
